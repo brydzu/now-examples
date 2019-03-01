@@ -31,6 +31,7 @@
       "config": {
         "distDir": "./my_site/public"
       }
-    }
+    },
+    { "src": "preact-x/package.json", "use": "@now/static-build", "config": { "distDir": "build" } }
   ]
 }
