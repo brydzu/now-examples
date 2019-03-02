@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "name": "preact-ssr",
+  "public": true,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@now/static-build",
+      "config": { "distDir": "build" }
+    }
+  ],
+  "routes": [
+    { "src": "^/assets/(.*)", "dest": "/assets/$1" },
+    {
+      "src": "^/(.*)\\.(.*)\\.(js|css|json|css.map|js.map)$",
+      "headers": { "cache-control": "Immutable" },
+      "dest": "/$1.$2.$3"
+    },
+    { "src": "^/(.*)\\.(js|css|json|css.map|js.map)$", "dest": "/$1.$2" },
+    { "src": "^/(.*)", "dest": "/index.html" }
+  ]
+}
