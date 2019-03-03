@@ -12,10 +12,15 @@
     "serve": "preact build && preact serve",
     "dev": "preact watch",
     "lint": "eslint src",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,md,html,graphql}\"",
     "test": "jest"
   },
   "eslintConfig": {
-    "extends": "eslint-config-synacor",
+    "extends": [
+      "eslint-config-synacor",
+      "prettier",
+      "prettier/react"
+    ],
     "settings": {
       "react": {
         "createClass": "Component",
@@ -27,15 +32,25 @@
   "eslintIgnore": [
     "build/*"
   ],
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "semi": true,
+    "useTabs": true,
+    "singleQuote": true,
+    "endOfLine": "lf"
+  },
   "devDependencies": {
     "@babel/plugin-transform-react-jsx": "^7.3.0",
     "eslint": "^5.14.1",
+    "eslint-config-prettier": "4.1.0",
     "eslint-config-synacor": "^3.0.3",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^24.1.0",
     "per-env": "^1.0.2",
     "preact-cli": "^2.0.0",
-    "preact-render-spy": "^1.2.1"
+    "preact-render-spy": "^1.2.1",
+    "prettier": "1.16.4"
   },
   "dependencies": {
     "preact": "^8.2.6",
