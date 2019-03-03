@@ -4,6 +4,7 @@
 	"version": "0.0.0",
 	"license": "MIT",
 	"scripts": {
+		"postinstall": "patch-package",
 		"start": "per-env",
 		"start:production": "npm run -s serve",
 		"start:development": "npm run -s dev",
@@ -54,6 +55,7 @@
 		"identity-obj-proxy": "^3.0.0",
 		"jest": "^24.1.0",
 		"now-lambda-runner": "^3.3.0",
+		"patch-package": "^6.0.5",
 		"per-env": "^1.0.2",
 		"preact-cli": "^2.2.1",
 		"preact-render-spy": "^1.2.1",
