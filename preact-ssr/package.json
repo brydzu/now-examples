@@ -70,6 +70,9 @@
 	"dependencies": {
 		"@grafoo/core": "^1.4.1",
 		"@grafoo/preact": "^1.4.1",
+		"apollo-datasource-rest": "^0.3.2",
+		"apollo-server": "^2.4.8",
+		"graphql": "^14.1.1",
 		"isomorphic-fetch": "^2.2.1",
 		"preact": "^8.2.6",
 		"preact-compat": "^3.17.0",
