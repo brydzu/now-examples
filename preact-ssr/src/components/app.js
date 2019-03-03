@@ -33,6 +33,7 @@ if (typeof window !== 'undefined') {
 // Code-splitting is automated for routes
 import Home from '../routes/home';
 import Profile from '../routes/profile';
+import NotFound from '../routes/404';
 
 export default class App extends Component {
 	/** Gets fired when the route changes.
@@ -40,18 +41,21 @@ export default class App extends Component {
 	 *	@param {string} event.url	The newly routed URL
 	 */
 	handleRoute = e => {
-		this.currentUrl = e.url;
+		this.setState({
+			currentUrl: e.url,
+		});
 	};
 
 	render() {
 		return (
 			<div id="app">
-				<Header />
+				<Header selectedRoute={this.state.currentUrl} />
 				<Provider client={client}>
 					<Router onChange={this.handleRoute}>
 						<Home path="/" />
 						<Profile path="/profile/" user="me" />
 						<Profile path="/profile/:user" />
+						<NotFound default />
 					</Router>
 				</Provider>
 			</div>

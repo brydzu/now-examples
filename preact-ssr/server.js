@@ -30,6 +30,10 @@ const profileJohnTemplate = readFileSync(
 	`${__dirname}/build/profile/index.html`,
 	'utf8'
 );
+const notFoundTemplate = readFileSync(
+	`${__dirname}/build/404/index.html`,
+	'utf8'
+);
 
 function buildRoutePayload(queryParams = { path: '/' }) {
 	const path = decodeURIComponent(queryParams.path);
@@ -46,6 +50,11 @@ function buildRoutePayload(queryParams = { path: '/' }) {
 			template: profileTemplate,
 			graphqlQuery: getGraphqlQueriesByRoutes.profile,
 			variables: {},
+		};
+	} else if (/^404/.test(path)) {
+		return {
+			url: queryParams.path,
+			template: notFoundTemplate,
 		};
 	}
 
@@ -64,10 +73,13 @@ module.exports = async (req, res) => {
 	const routePayload = buildRoutePayload(queryParams);
 
 	const client = createClient(fetchQuery, { idFields: ['id'] });
-	const query = routePayload.graphqlQuery;
-	const variables = routePayload.variables;
-	const result = await client.execute(query, variables);
-	await client.write(query, variables, result);
+
+	if (routePayload.graphqlQuery) {
+		const query = routePayload.graphqlQuery;
+		const variables = routePayload.variables;
+		const result = await client.execute(query, variables);
+		await client.write(query, variables, result);
+	}
 
 	res.setHeader('Content-Type', 'text/html');
 

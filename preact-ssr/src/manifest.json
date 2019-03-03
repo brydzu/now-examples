@@ -1,6 +1,6 @@
 {
-	"name": "preact",
-	"short_name": "preact",
+	"name": "preact-ssr",
+	"short_name": "preact-ssr",
 	"start_url": "/",
 	"display": "standalone",
 	"orientation": "portrait",

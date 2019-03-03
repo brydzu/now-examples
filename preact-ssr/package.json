@@ -23,6 +23,12 @@
 			"prettier",
 			"prettier/react"
 		],
+		"rules": {
+			"no-unused-vars": "warn",
+			"react/sort-comp": "off",
+			"lines-around-comment": "off",
+			"react/prefer-stateless-function": "off"
+		},
 		"settings": {
 			"react": {
 				"createClass": "Component",
@@ -67,6 +73,7 @@
 		"isomorphic-fetch": "^2.2.1",
 		"preact": "^8.2.6",
 		"preact-compat": "^3.17.0",
+		"preact-material-components": "^1.5.7",
 		"preact-render-to-string": "^4.1.0",
 		"preact-router": "^2.5.7"
 	},
