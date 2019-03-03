@@ -26,25 +26,25 @@ In this case we are going to use `@now/static-build` to build and deploy our Pre
 
 ```json
 {
-  "version": 2,
-  "name": "my-preact-app",
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@now/static-build",
-      "config": { "distDir": "build" }
-    }
-  ],
-  "routes": [
-    { "src": "^/assets/(.*)", "dest": "/assets/$1" },
-    {
-      "src": "^/(.*)\\.(.*)\\.(js|css|json|css.map|js.map)$",
-      "headers": { "cache-control": "Immutable" },
-      "dest": "/$1.$2.$3"
-    },
-    { "src": "^/(.*)\\.(js|css|json|css.map|js.map)$", "dest": "/$1.$2" },
-    { "src": "^/(.*)", "dest": "/index.html" }
-  ]
+	"version": 2,
+	"name": "my-preact-app",
+	"builds": [
+		{
+			"src": "package.json",
+			"use": "@now/static-build",
+			"config": { "distDir": "build" }
+		}
+	],
+	"routes": [
+		{ "src": "^/assets/(.*)", "dest": "/assets/$1" },
+		{
+			"src": "^/(.*)\\.(.*)\\.(js|css|json|css.map|js.map)$",
+			"headers": { "cache-control": "Immutable" },
+			"dest": "/$1.$2.$3"
+		},
+		{ "src": "^/(.*)\\.(js|css|json|css.map|js.map)$", "dest": "/$1.$2" },
+		{ "src": "^/(.*)", "dest": "/index.html" }
+	]
 }
 ```
 

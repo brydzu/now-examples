@@ -4,7 +4,7 @@ import style from './style';
 export default class Profile extends Component {
 	state = {
 		time: Date.now(),
-		count: 10
+		count: 10,
 	};
 
 	// update the current time
@@ -13,7 +13,7 @@ export default class Profile extends Component {
 	};
 
 	increment = () => {
-		this.setState({ count: this.state.count+1 });
+		this.setState({ count: this.state.count + 1 });
 	};
 
 	// gets called when this route is navigated to
@@ -32,14 +32,13 @@ export default class Profile extends Component {
 		return (
 			<div class={style.profile}>
 				<h1>Profile: {user}</h1>
-				<p>This is the user profile for a user named { user }.</p>
+				<p>This is the user profile for a user named {user}.</p>
 
 				<div>Current time: {new Date(time).toLocaleString()}</div>
 
 				<p>
-					<button onClick={this.increment}>Click Me</button>
-					{' '}
-					Clicked {count} times.
+					<button onClick={this.increment}>Click Me</button> Clicked {count}{' '}
+					times.
 				</p>
 			</div>
 		);
