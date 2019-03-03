@@ -7,13 +7,14 @@
 		"start": "per-env",
 		"start:production": "npm run -s serve",
 		"start:development": "npm run -s dev",
-		"build": "preact build",
+		"build": "preact build --prerenderUrls prerender-urls.json --template template.html",
 		"now-build": "npm run build",
-		"serve": "preact build && preact serve",
+		"serve": "npm run build && now-lambda",
 		"dev": "preact watch",
 		"lint": "eslint src",
 		"format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,md,html,graphql}\"",
-		"test": "jest"
+		"test": "jest",
+		"download-schema": "npx get-graphql-schema https://graphql-pokemon.now.sh > schema.graphql"
 	},
 	"eslintConfig": {
 		"extends": [
@@ -30,7 +31,8 @@
 		}
 	},
 	"eslintIgnore": [
-		"build/*"
+		"build/*",
+		"schema.graphql"
 	],
 	"prettier": {
 		"trailingComma": "es5",
@@ -42,19 +44,28 @@
 	},
 	"devDependencies": {
 		"@babel/plugin-transform-react-jsx": "^7.3.0",
+		"@grafoo/babel-plugin": "^1.4.1",
+		"babel-plugin-transform-class-properties": "^6.24.1",
+		"babel-plugin-transform-object-rest-spread": "^6.26.0",
+		"babel-plugin-transform-react-jsx": "^6.24.1",
 		"eslint": "^5.14.1",
 		"eslint-config-prettier": "4.1.0",
 		"eslint-config-synacor": "^3.0.3",
 		"identity-obj-proxy": "^3.0.0",
 		"jest": "^24.1.0",
+		"now-lambda-runner": "^3.3.0",
 		"per-env": "^1.0.2",
-		"preact-cli": "^2.0.0",
+		"preact-cli": "^2.2.1",
 		"preact-render-spy": "^1.2.1",
 		"prettier": "1.16.4"
 	},
 	"dependencies": {
+		"@grafoo/core": "^1.4.1",
+		"@grafoo/preact": "^1.4.1",
+		"isomorphic-fetch": "^2.2.1",
 		"preact": "^8.2.6",
 		"preact-compat": "^3.17.0",
+		"preact-render-to-string": "^4.1.0",
 		"preact-router": "^2.5.7"
 	},
 	"jest": {

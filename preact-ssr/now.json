@@ -7,9 +7,14 @@
 			"src": "package.json",
 			"use": "@now/static-build",
 			"config": { "distDir": "build" }
+		},
+		{
+			"src": "server.js",
+			"use": "@now/node"
 		}
 	],
 	"routes": [
+		{ "src": "^/favicon.ico", "dest": "/favicon.ico" },
 		{ "src": "^/assets/(.*)", "dest": "/assets/$1" },
 		{
 			"src": "^/(.*)\\.(.*)\\.(js|css|json|css.map|js.map)$",
@@ -17,6 +22,6 @@
 			"dest": "/$1.$2.$3"
 		},
 		{ "src": "^/(.*)\\.(js|css|json|css.map|js.map)$", "dest": "/$1.$2" },
-		{ "src": "^/(.*)", "dest": "/index.html" }
+		{ "src": "^/(.*)", "dest": "server.js?path=$1" }
 	]
 }

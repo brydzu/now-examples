@@ -1,7 +1,34 @@
 import { h, Component } from 'preact';
 import { Router } from 'preact-router';
+import createClient from '@grafoo/core';
+import { Provider } from '@grafoo/preact';
 
 import Header from './header';
+
+function fetchQuery(query, variables) {
+	const init = {
+		method: 'POST',
+		body: JSON.stringify({ query, variables }),
+		headers: {
+			'content-type': 'application/json',
+		},
+	};
+
+	return fetch('https://graphql-pokemon.now.sh', init).then(res => res.json());
+}
+
+let client;
+if (typeof window !== 'undefined') {
+	const initialState = window._GRAFOO_INITIAL_STATE_ || {};
+	client = createClient(fetchQuery, {
+		initialState,
+		idFields: ['id'],
+	});
+} else {
+	client = createClient(fetchQuery, {
+		idFields: ['id'],
+	});
+}
 
 // Code-splitting is automated for routes
 import Home from '../routes/home';
@@ -20,11 +47,13 @@ export default class App extends Component {
 		return (
 			<div id="app">
 				<Header />
-				<Router onChange={this.handleRoute}>
-					<Home path="/" />
-					<Profile path="/profile/" user="me" />
-					<Profile path="/profile/:user" />
-				</Router>
+				<Provider client={client}>
+					<Router onChange={this.handleRoute}>
+						<Home path="/" />
+						<Profile path="/profile/" user="me" />
+						<Profile path="/profile/:user" />
+					</Router>
+				</Provider>
 			</div>
 		);
 	}

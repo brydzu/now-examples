@@ -1,5 +1,7 @@
 import { h, Component } from 'preact';
+import { Consumer } from '@grafoo/preact';
 import style from './style';
+import getQueryByRoutes from '../../utils/getQueryByRoutes';
 
 export default class Profile extends Component {
 	state = {
@@ -34,12 +36,9 @@ export default class Profile extends Component {
 				<h1>Profile: {user}</h1>
 				<p>This is the user profile for a user named {user}.</p>
 
-				<div>Current time: {new Date(time).toLocaleString()}</div>
-
-				<p>
-					<button onClick={this.increment}>Click Me</button> Clicked {count}{' '}
-					times.
-				</p>
+				<Consumer query={getQueryByRoutes.profile}>
+					{props => <div>{props.pokemon && props.pokemon.name}</div>}
+				</Consumer>
 			</div>
 		);
 	}
