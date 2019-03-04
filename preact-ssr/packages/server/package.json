@@ -1,12 +1,9 @@
 {
 	"private": true,
-	"name": "preact-ssr-api",
+	"name": "preact-ssr-server",
 	"version": "0.0.0",
 	"license": "MIT",
 	"dependencies": {
-		"apollo-datasource-rest": "^0.3.2",
-		"apollo-server": "^2.4.8",
-		"graphql": "^14.1.1",
 		"isomorphic-fetch": "^2.2.1"
 	}
 }
