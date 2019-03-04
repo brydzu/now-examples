@@ -2,10 +2,10 @@ const { render: renderToString } = require('preact-render-to-string');
 const { h } = require('preact');
 const { readFileSync } = require('fs');
 const createClient = require('@grafoo/core');
-const getQueryParams = require('./src/utils/getQueryParams');
+const getQueryParams = require('../../src/utils/getQueryParams');
 const fetch = require('isomorphic-fetch');
 
-const bundle = require('./build/ssr-build/ssr-bundle');
+const bundle = require('../../build/ssr-build/ssr-bundle');
 const App = bundle.default;
 const { getGraphqlQueriesByRoutes } = bundle;
 
@@ -21,17 +21,20 @@ function fetchQuery(query, variables) {
 	return fetch('https://graphql-pokemon.now.sh', init).then(res => res.json());
 }
 
-const homeTemplate = readFileSync(`${__dirname}/build/index.html`, 'utf8');
+const homeTemplate = readFileSync(
+	`${__dirname}/../../build/index.html`,
+	'utf8'
+);
 const profileTemplate = readFileSync(
-	`${__dirname}/build/profile/index.html`,
+	`${__dirname}/../../build/profile/index.html`,
 	'utf8'
 );
 const profileJohnTemplate = readFileSync(
-	`${__dirname}/build/profile/index.html`,
+	`${__dirname}/../../build/profile/index.html`,
 	'utf8'
 );
 const notFoundTemplate = readFileSync(
-	`${__dirname}/build/404/index.html`,
+	`${__dirname}/../../build/404/index.html`,
 	'utf8'
 );
 

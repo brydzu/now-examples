@@ -9,7 +9,7 @@
 			"config": { "distDir": "build" }
 		},
 		{
-			"src": "server.js",
+			"src": "/packages/server/index.js",
 			"use": "@now/node"
 		}
 	],
@@ -22,6 +22,6 @@
 			"dest": "/$1.$2.$3"
 		},
 		{ "src": "^/(.*)\\.(js|css|json|css.map|js.map)$", "dest": "/$1.$2" },
-		{ "src": "^/(.*)", "dest": "server.js?path=$1" }
+		{ "src": "^/(.*)", "dest": "/packages/server/index.js?path=$1" }
 	]
 }
